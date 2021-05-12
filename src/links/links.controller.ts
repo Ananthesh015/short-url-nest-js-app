@@ -46,16 +46,13 @@ export class LinksController {
     return this.linkService.findAll();
   }
 
-  // @HttpCode(302)
   @Get(':urlHash')
-  // @Header('location', 'www.google.com')
   async urlDetails(
     @Req() req: Request,
     @Res() res: Response,
     @Param('urlHash') urlHash: string,
   ) {
     urlDetails = await this.linkService.getUrlDetails(urlHash);
-    // console.log(urlDetails.url);
     res.redirect(302, urlDetails.url);
     return '';
   }

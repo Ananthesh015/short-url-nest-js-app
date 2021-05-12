@@ -9,9 +9,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   imports: [
     LinksModule,
     ConfigModule.forRoot({ isGlobal: true }),
-    // MongooseModule.forRoot(
-    //   'mongodb+srv://AR1:ARTEST1@arcluster.awlgj.mongodb.net/UrlShorther?retryWrites=true&w=majority',
-    // ),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

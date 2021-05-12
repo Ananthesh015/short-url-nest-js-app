@@ -13,23 +13,6 @@ export class LinksService {
     private readonly shortUrlModel: Model<ModelUrlDetails>,
     private configService: ConfigService,
   ) {}
-  // urlDetails: UrlDetails[] = [
-  //   {
-  //     url: 'https://www.google.com/search?q=do+a+barrel+roll',
-  //     urlHash: 'abcdef',
-  //     shortUrl: 'https://configurable-shortened-url-domain/abcdef',
-  //   },
-  //   {
-  //     url: 'https://www.google.com/search?q=do+a+barrel+roll1',
-  //     urlHash: 'abcdefg',
-  //     shortUrl: 'https://configurable-shortened-url-domain/abcdefg',
-  //   },
-  //   {
-  //     url: 'https://www.google.com/search?q=do+a+barrel+roll2',
-  //     urlHash: 'abcdefgh',
-  //     shortUrl: 'https://configurable-shortened-url-domain/abcdefgh',
-  //   },
-  // ];
 
   async findAll(): Promise<UrlDetails[]> {
     const urlDetailsDoc: UrlDetails[] = await this.shortUrlModel.find();
@@ -44,8 +27,6 @@ export class LinksService {
     const docs: UrlDetails = await this.shortUrlModel.findOne({
       urlHash: urlHash,
     });
-    // console.log(!!docs);
-    // return docs;
     if (!!docs) {
       return docs;
     } else {
@@ -62,14 +43,6 @@ export class LinksService {
     } else {
       throw new Error('Detail already present in DB');
     }
-    // const shortId = ShortId.generate();
-    // const createDetails = {
-    //   url,
-    //   urlHash: shortId,
-    //   shortUrl: this.configService.get('URI') + shortId,
-    // };
-    // const newDetails = new this.shortUrlModel(createDetails);
-    // return newDetails.save();
   }
 
   async UpdateUrl(urlHash: string, url: string): Promise<UrlDetails> {
